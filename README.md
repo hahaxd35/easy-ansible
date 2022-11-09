@@ -1,6 +1,7 @@
 # easy-ansible
 ansible was for me way to complicated so i startet a own Bash Version of it.
 
+is far from finished!
 
 Planned features:
 * file (copy modul)
