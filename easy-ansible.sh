@@ -89,7 +89,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-t
+
 
 #if $mode
 #if [  grep -qP "$line" "$file" ]
