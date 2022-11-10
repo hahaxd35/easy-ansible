@@ -118,7 +118,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --backup)
-      BACKUP=-"i.bak"
+      BACKUP="-i.bak"
       shift
       ;;
     *)

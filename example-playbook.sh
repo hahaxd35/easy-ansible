@@ -15,3 +15,6 @@ file --mode 322 --content "Test" --file /tmp/test.datei
 
 lineinfile --line "^127\.0\.0\.1(.*?)$(hostname)" --action "append" --file /etc/hosts
 
+
+insert_after --afterthis "Test" --file /tmp/test.datei --insert "After Test"
+
