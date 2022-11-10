@@ -78,10 +78,12 @@ while [[ $# -gt 0 ]]; do
     --line)
       LINE="$2"
       shift # past argument
+      shift
       ;;
     --search)
       SEARCH="$2"
       shift # past argument
+      shift
       ;;    *)
       POSITIONAL_ARGS+=("$1") # save positional arg
       shift # past argument
@@ -102,8 +104,8 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
-    --insertthis)
-      insertthis="$2"
+    --insert)
+      insert="$2"
       shift
       shift
       ;;
@@ -112,24 +114,25 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
-    --file)
-      file="$2"
-      shift
-      shift
-      ;;
     --backup)
-      BACKUP="-i.bak"
+      BACKUP="$2"
+      shift
       shift
       ;;
     *)
       echo "unknown option "$1""
       exit
       ;;
+  esac
+done
 
-sed $BACKUP '/"$afterthis"/a "$insert"' $FILE
+
+sed -i$BACKUP "/$afterthis/a $insert" $FILE
 
 }
-function insert_befor() {}
+function insert_befor() {
+echo "Not ready"
+}
 
 function cmd() {
 

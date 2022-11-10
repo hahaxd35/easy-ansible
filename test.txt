@@ -1,0 +1,3 @@
+I can do 
+many stuff here like using commands$(hostname) = debian
+ Gummibaer
