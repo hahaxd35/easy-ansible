@@ -5,7 +5,7 @@ set -e
 # easy ansible
 
 ssh_user=""
-host=""
+hosts=""
 
 function file() {
 
@@ -45,12 +45,15 @@ done
 
 if [ "$FILE" = "" ]; then echo "--file <path> is needed" ; exit; fi
 
+
+do_remote "
 cat > "$FILE" << EOF
 $CONTENT
-EOF
+EOF"
 
-chown "$OWNER" "$FILE" || echo "Maybe wrong user?"
-chmod "$MODE" "$FILE"  || echo "Maybe wrong user?"
+
+do_remote "chown "$OWNER" "$FILE" || echo "Maybe wrong user?""
+do_remote "chmod "$MODE" "$FILE"  || echo "Maybe wrong user?""
 
 
 
@@ -127,11 +130,14 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-sed -i$BACKUP "/$afterthis/a $insert" $FILE
+do_remote "sed -i"$BACKUP" '/"$afterthis"/a "$insert"' "$FILE""
 
 }
+
 function insert_befor() {
+
 echo "Not ready"
+
 }
 
 function cmd() {
@@ -149,6 +155,23 @@ action=(update,upgrade,install,remove,purge,reinstall)
 package=""
 
 apt $action $package
+
+}
+
+function do_remote(){
+
+action=$* #(echo "$@" | grep -oP "(<=%).*(<=%)")
+shift
+#hosts="$*"
+
+for remote in "$hosts"
+  do
+typeset -f file ssh $ssh_user@$remote << EOF
+    $action
+EOF
+    
+done
+
 
 }
 # Aufruf 
