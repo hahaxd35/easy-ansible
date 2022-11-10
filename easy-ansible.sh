@@ -91,16 +91,45 @@ done
 
 
 
-#if $mode
-#if [  grep -qP "$line" "$file" ]
-#then
-#echo bla
-#else
-#if [ ! grep -qP "$line" "$file"
-#echo bla
-#fi
 
 }
+
+function insert_after() {
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --file)
+      FILE="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    --insertthis)
+      insertthis="$2"
+      shift
+      shift
+      ;;
+    --afterthis)
+      afterthis="$2"
+      shift
+      shift
+      ;;
+    --file)
+      file="$2"
+      shift
+      shift
+      ;;
+    --backup)
+      BACKUP=-"i.bak"
+      shift
+      ;;
+    *)
+      echo "unknown option "$1""
+      exit
+      ;;
+
+sed $BACKUP '/"$afterthis"/a "$insert"' $FILE
+
+}
+function insert_befor() {}
 
 function cmd() {
 

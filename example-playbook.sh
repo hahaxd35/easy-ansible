@@ -12,3 +12,6 @@ many stuff here like using commands\$(hostname) = $(hostname)
  Gummibaer" --file test.txt
  
 file --mode 322 --content "Test" --file /tmp/test.datei
+
+lineinfile --line "^127\.0\.0\.1(.*?)$(hostname)" --action "append" --file /etc/hosts
+
