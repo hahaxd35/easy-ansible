@@ -123,12 +123,7 @@ apt $action $package
 # . easy-ansible.sh
 
 
-file --mode u=rwx,g=rw,o=r --owner root:root --content "Ich 
-bin 
-ein $(hostname)
- Gummibaer" --file test.txt
- 
-file --mode 322 --content "Test" --file /tmp/test.datei
+
 
 
  

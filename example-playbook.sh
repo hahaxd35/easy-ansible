@@ -6,7 +6,9 @@
 hostS="ipA ipB HostC"
 ssh_user="root"
 
-file --mode u=rw,g=rw,o=r --owner root:root --content "I can
-do multiline
-and i use bash \$(hostname) = $(hostname)
- :)" --file test.txt
+
+file --mode u=rwx,g=rw,o=r --owner root:root --content "I can do 
+many stuff here like using commands\$(hostname) = $(hostname)
+ Gummibaer" --file test.txt
+ 
+file --mode 322 --content "Test" --file /tmp/test.datei
